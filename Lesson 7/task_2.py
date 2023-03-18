@@ -13,9 +13,8 @@ prices = {
     "orange": 1.5,
     "pear": 3
 }
-total_items = {}
+total_price = 0
 for key in stock.keys():
     if key in prices:
-        total_items[key] = stock[key] * prices[key]
-total_price = sum(value for value in total_items.values())
+        total_price += stock[key] * prices[key]
 print(total_price)
