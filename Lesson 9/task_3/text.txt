@@ -1,0 +1,6 @@
+Hello, my name is Serge
+I create this file
+And I want to test it
+Test and test it again
+
+Another string
