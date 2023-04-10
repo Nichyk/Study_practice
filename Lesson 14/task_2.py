@@ -2,13 +2,10 @@
 def stop_words(words: list):
     def inside_func(func):
         def wrapper(*args, **kwargs):
-            list_to_check = func(*args, **kwargs).split(' ')
-            for word in words:
-                for i, v in enumerate(list_to_check):
-                    if word.lower() in v.lower():
-                        list_to_check[i] = '*'
-            correct_message = ' '.join(list_to_check) + '!'
-            return correct_message
+            message = func(*args, **kwargs)
+            for i in words:
+                message = message.replace(i, '*')
+            return message
         return wrapper
     return inside_func
 
