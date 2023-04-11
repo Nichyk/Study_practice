@@ -1,6 +1,8 @@
 # Write a decorator that takes a list of stop words and replaces them with * inside the decorated function
+from functools import wraps
 def stop_words(words: list):
     def inside_func(func):
+        @wraps(func)
         def wrapper(*args, **kwargs):
             message = func(*args, **kwargs)
             for i in words:
