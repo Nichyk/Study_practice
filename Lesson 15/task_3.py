@@ -48,7 +48,7 @@ class TVController:
             return 'Yes' if channel >= 1 and channel <= len(self.channels) else 'No'
 
 
-CHANNELS = ['First', 'Middle', 'Last']
+CHANNELS = ['First', 'Second', 'Three', 'Four']
 controller = TVController(CHANNELS)
 print(controller.first_channel(), controller.last_channel(), controller.turn_channel(1), controller.next_channel(),
       controller.previous_channel(), controller.is_exist(7))
