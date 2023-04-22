@@ -27,8 +27,8 @@ class TVController:
         return self.channels[self.current_channel_index]
 
     def turn_channel(self, n) -> str:
-        self.current_channel_index = n - 1
         try:
+            self.current_channel_index = n - 1
             return self.channels[self.current_channel_index]
         except IndexError:
             print('No such channel')
