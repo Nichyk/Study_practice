@@ -27,11 +27,12 @@ class TVController:
         return self.channels[self.current_channel_index]
 
     def turn_channel(self, n) -> str:
-        try:
+        if n <= len(self.channels):
             self.current_channel_index = n - 1
             return self.channels[self.current_channel_index]
-        except IndexError:
+        else:
             print('No such channel')
+            return self.channels[self.current_channel_index]
 
     def next_channel(self) -> str:
         self.current_channel_index = (self.current_channel_index + 1) % len(self.channels)
@@ -42,7 +43,10 @@ class TVController:
         return self.channels[self.current_channel_index]
 
     def current_channel(self) -> str:
-        return self.channels[self.current_channel_index]
+        try:
+            return self.channels[self.current_channel_index]
+        except IndexError:
+            print('You can\'t check channel, because you never can get there')
 
     def is_exist(self, channel) -> str:
         if type(channel) == str:
@@ -53,5 +57,4 @@ class TVController:
 
 CHANNELS = ['BBC', 'Discovery', 'TV1000']
 controller = TVController(CHANNELS)
-print(controller.first_channel(), controller.last_channel(), controller.turn_channel(5), controller.next_channel(),
-      controller.previous_channel(), controller.is_exist(7))
+print(controller.turn_channel(2), controller.turn_channel(5), controller.current_channel())
