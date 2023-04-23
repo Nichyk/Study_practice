@@ -43,10 +43,7 @@ class TVController:
         return self.channels[self.current_channel_index]
 
     def current_channel(self) -> str:
-        try:
-            return self.channels[self.current_channel_index]
-        except IndexError:
-            print('You can\'t check channel, because you never can get there')
+        return self.channels[self.current_channel_index]
 
     def is_exist(self, channel) -> str:
         if type(channel) == str:
@@ -57,4 +54,4 @@ class TVController:
 
 CHANNELS = ['BBC', 'Discovery', 'TV1000']
 controller = TVController(CHANNELS)
-print(controller.turn_channel(2), controller.turn_channel(5), controller.current_channel())
+print(controller.last_channel(), controller.turn_channel(2), controller.current_channel())
