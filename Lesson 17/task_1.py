@@ -30,13 +30,11 @@ cat1 = Cat()
 dog1 = Dog()
 
 
-def animal_talk(*args):
-    if not isinstance(args, Animal):
+def animal_talk(animal):
+    if not isinstance(animal, Animal):
         raise ValueError('Not animal')
-    elif isinstance(args, Dog):
-        return args.talk()
-    elif isinstance(args, Cat):
-        return args.talk()
+    if isinstance(animal, Dog) or isinstance(animal, Cat):
+        return animal.talk()
 
 
 print(animal_talk(dog1))
