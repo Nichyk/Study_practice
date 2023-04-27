@@ -18,6 +18,13 @@ class Author:
         self.birthday = birthday
         self.books = list()
 
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f'The Author\'s name is {self.name}. He was born {self.birthday} in {self.country}. ' \
+               f'Books that were written by him: {self.books}.'
+
 
 class Book:
     amount = 0
@@ -26,8 +33,14 @@ class Book:
         self.name = name
         self.year = year
         self.author = author
-        self.author.books.append(self)
+        self.author.books.append(self.name)
         Book.amount += 1
+
+    def __repr__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return f'The name of the book is {self.name}. It was written in {str(self.year)} by {self.author.name}.'
 
 
 class Library:
@@ -45,17 +58,16 @@ class Library:
         return book
 
     def group_by_author(self, author: Author):
-        sorted_list = [book for book in self.books if book.author == author]
+        sorted_list = [book.name for book in self.books if book.author == author]
         return sorted_list
 
     def group_by_year(self, year: int):
-        sorted_list = [book for book in self.books if book.year == year]
+        sorted_list = [book.name for book in self.books if book.year == year]
         return sorted_list
 
+    def __repr__(self):
+        return self.__str__()
 
-l = Library('Kyiv')
-author1 = Author('Mark Twain', 'USA', '13.11.1835')
-print(l.new_book('Tom Sawyer', 1876, author1))
-print(l.new_book('Tom Sawyer2', 1876, author1))
-print(Book.amount)
-print(l.group_by_author(author1))
+    def __str__(self):
+        return f'The name the library is {self.name}. The list of our books: {self.books}. ' \
+               f'The list of authors: {self.authors}.'
