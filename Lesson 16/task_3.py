@@ -45,13 +45,9 @@ class ProductStore:
     def set_discount(self, identifier, percent, identifier_type='name'):
         if identifier_type not in ['name', 'type']:
             raise ValueError('Invalid identifier type')
-        if identifier_type == 'type':
+        if identifier_type == 'type' or 'name':
             for item in self.products:
                 if item['product'].product_type == identifier:
-                    item['product'].price = item['product'].price * ((100 - percent) / 100)
-        if identifier_type == 'name':
-            for item in self.products:
-                if item['product'].name == identifier:
                     item['product'].price = item['product'].price * ((100 - percent) / 100)
 
     def sell(self, product_name, amount):
