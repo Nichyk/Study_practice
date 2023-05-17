@@ -7,7 +7,8 @@ import module_to_test
 class NameTestCase(unittest.TestCase):
     def test_make_operation(self):
         result = module_to_test.make_operation('+', 7, 8)
-        self.assertEqual(result, 16)
+        self.assertEqual(result, 15)
 
 
-unittest.main()
+if __name__ == '__main__':
+    unittest.main()
