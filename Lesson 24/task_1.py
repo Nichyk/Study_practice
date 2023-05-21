@@ -1,6 +1,6 @@
 # Write a program that reads in a sequence of characters and prints them in reverse order,
 # using your implementation of Stack.
-from typing import List
+from typing import List, Any
 
 
 class MyStack:
@@ -10,7 +10,7 @@ class MyStack:
     def push(self, item):
         self.sequence.append(item)
 
-    def pop(self):
+    def pop(self) -> Any:
         try:
             return self.sequence.pop()
         except IndexError:
