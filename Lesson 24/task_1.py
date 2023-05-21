@@ -1,20 +1,24 @@
 # Write a program that reads in a sequence of characters and prints them in reverse order,
 # using your implementation of Stack.
-from typing import List, Any
+from typing import Any
 
 
 class MyStack:
-    def __init__(self, sequence: List) -> None:
-        self.sequence = sequence
+    def __init__(self) -> None:
+        self.sequence = list()
 
     def push(self, item):
         self.sequence.append(item)
 
     def pop(self) -> Any:
-        try:
-            return self.sequence.pop()
-        except IndexError:
-            print('List is empty. Push some items and try again')
+        return self.sequence.pop()
 
-    def reverse_print(self) -> List:
-        return self.sequence[::-1]
+    def is_empty(self) -> bool:
+        if len(self.sequence) == 0:
+            return True
+        else:
+            return False
+
+    def reverse_print(self):
+        while not self.is_empty():
+            print(self.sequence.pop())
