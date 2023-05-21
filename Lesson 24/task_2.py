@@ -2,11 +2,11 @@
 # and curly brackets are "balanced."
 
 def balanced(sequence: str) -> bool:
-    if sequence.count('{') != sequence.count('}') or sequence.index('{') > sequence.index('}'):
+    if sequence.count('{') != sequence.count('}') or sequence.find('{') > sequence.find('}'):
         print('\'{}\' not balanced')
-    elif sequence.count('[') != sequence.count(']') or sequence.index('[') > sequence.index(']'):
+    elif sequence.count('[') != sequence.count(']') or sequence.find('[') > sequence.find(']'):
         print('\'[]\' not balanced')
-    elif sequence.count('(') != sequence.count(')') or sequence.index('(') > sequence.index(')'):
+    elif sequence.count('(') != sequence.count(')') or sequence.find('(') > sequence.find(')'):
         print('\'()\' not balanced')
     else:
         return True
