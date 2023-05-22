@@ -3,6 +3,7 @@
 # Consider the case in which the element is not found - raise ValueError with proper info Message
 from typing import Any
 
+
 class Queue:
 
     def __init__(self) -> None:
@@ -25,4 +26,3 @@ class Queue:
         else:
             index = self.queue.index(item)
             return self.queue.pop(index)
-
