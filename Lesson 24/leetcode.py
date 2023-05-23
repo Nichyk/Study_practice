@@ -15,8 +15,3 @@ class Solution:
                 students.append(student)
                 count += 1
         return len(students)
-
-
-q = Solution()
-print(q.count_students([1, 1, 1, 0, 0, 1], [1, 0, 0, 0, 1, 1]))
-
