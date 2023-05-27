@@ -4,9 +4,12 @@
 def balanced(sequence: str) -> bool:
     if sequence.count('{') != sequence.count('}') or sequence.find('{') > sequence.find('}'):
         print('\'{}\' not balanced')
+        return False
     elif sequence.count('[') != sequence.count(']') or sequence.find('[') > sequence.find(']'):
         print('\'[]\' not balanced')
+        return False
     elif sequence.count('(') != sequence.count(')') or sequence.find('(') > sequence.find(')'):
         print('\'()\' not balanced')
+        return False
     else:
         return True
