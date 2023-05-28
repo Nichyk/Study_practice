@@ -25,13 +25,3 @@ if __name__ == '__main__':
     print(balanced('()'))
     print(balanced('()[]{}'))
     print(balanced('(]'))
-
-
-
-
-
-
-
-
-
-
