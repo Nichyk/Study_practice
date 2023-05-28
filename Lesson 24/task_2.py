@@ -6,22 +6,23 @@ from collections import deque
 def balanced(sequence: str) -> bool:
     stack = deque()
     brackets = {')': '(', '}': '{', ']': '['}
-    if len(sequence) <= 1:
-        return False
-    for i in sequence:
-        if i in brackets.values():
-            stack.append(i)
-        if i in brackets.keys():
-            if len(stack) == 0:
+    if len(sequence) != 0 and not len(sequence) % 2:
+        for i in sequence:
+            if i in brackets.values():
+                stack.append(i)
+            elif i in brackets.keys() and len(stack) == 0:
+                return False
+            elif i in brackets.keys() and stack[-1] != brackets[i]:
                 return False
             else:
-                stack.append(i)
-                if stack.count(i) != stack.count(brackets[i]):
-                    return False
-    return True
+                stack.pop()
+        return len(stack) == 0
 
 
 if __name__ == '__main__':
     print(balanced('()'))
     print(balanced('()[]{}'))
     print(balanced('(]'))
+    print(balanced('({{{{}}}))'))
+    print(balanced("([)]"))
+    print(balanced("{[]}"))
