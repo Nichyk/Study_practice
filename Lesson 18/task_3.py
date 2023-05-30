@@ -38,10 +38,7 @@ class TypeDecorators:
         def wrapper(*args, **kwargs):
             result = func(*args, **kwargs)
             false_check = 'false', '0', '0.0', 'none', ''
-            if result.lower() in false_check:
-                return False
-            else:
-                return True
+            return False if result.lower() in false_check else True
         return wrapper
 
     @staticmethod
@@ -68,4 +65,3 @@ def do_something(string: str):
 
 assert do_nothing('25') == 25
 assert do_something('True') is True
-
