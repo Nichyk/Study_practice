@@ -1,12 +1,12 @@
 import json
+import os
 
-with open('phonebook.json', 'w') as json_file:
-    json_file.close()
+phonebook_name = input('Введи назву телефонної книги: ')
 
 
 def menu():
     print("""    Вітаю у моїй телефонній книзі!
-    
+
     Обери, що ти хочеш зробити:
     1. Додати новий контакт
     2. Знайти існуючий контакт за ім`ям
@@ -23,7 +23,7 @@ def menu():
     elif selection == '2':
         search_first_name()
     elif selection == '3':
-        search_second_name()
+        search_last_name()
     elif selection == '4':
         search_full_name()
     elif selection == '5':
@@ -39,51 +39,153 @@ def menu():
 
 
 def add_new_entries():
-    new_entries_dict = dict()
-    new_entries_dict['phone'] = input('Введіть номер телефону: ')
-    new_entries_dict['first_name'] = input('Введіть ім`я: ')
-    new_entries_dict['second_name'] = input('Введіть прізвище: ')
-    new_entries_dict['full_name'] = new_entries_dict['first_name'] + ' ' + new_entries_dict['second_name']
-    new_entries_dict['city'] = input('Введіть місто проживання: ')
-    with open('phonebook.json', 'a') as new_entries_file:
-        full_info = json.dumps(new_entries_dict)
-        new_entries_file.write(full_info)
-        new_entries_file.close()
-
-
-menu()
-with open('phonebook.json') as rf:
-    contacts = rf.read()
-    print(contacts)
+    phone_number = input('Введи номер телефону: ')
+    first_name = input('Введи ім`я: ')
+    last_name = input('Введи прізвище: ')
+    city = input('Введи назву міста: ')
+    info = {
+        'phone_number': phone_number,
+        'first_name': first_name,
+        'last_name': last_name,
+        'full_name': first_name + ' ' + last_name,
+        'city': city
+    }
+    data_dict[phone_number] = info
+    with open(phonebook_name + '.json', 'w') as file:
+        json.dump(data_dict, file)
+    print('Контакт збережено.')
+    is_another_contact = input('Додати ще один контакт? Введіть: Так або Ні. ')
+    if is_another_contact == 'Так':
+        add_new_entries()
+    else:
+        menu()
 
 
 def search_first_name():
-    pass
+    first_name = input('Введіть ім`я для пошуку: ')
+    for number, info in data_dict.items():
+        for name in info.values():
+            if name.lower() == first_name.lower():
+                print(data_dict[number])
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        search_first_name()
+    else:
+        menu()
 
 
-def search_second_name():
-    pass
+def search_last_name():
+    last_name = input('Введіть прізвище для пошуку: ')
+    for number, info in data_dict.items():
+        for lastname in info.values():
+            if lastname.lower() == last_name.lower():
+                print(data_dict[number])
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        search_last_name()
+    else:
+        menu()
 
 
 def search_full_name():
-    pass
+    full_name = input('Введіть повне ім`я для пошуку: ')
+    for number, info in data_dict.items():
+        for fullname in info.values():
+            if fullname.lower() == full_name.lower():
+                print(data_dict[number])
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        search_full_name()
+    else:
+        menu()
 
 
 def search_phone_number():
-    pass
+    phone_number = input('Введіть номер телефону для пошуку: ')
+    for number in data_dict.keys():
+        if number == phone_number:
+            print(data_dict[number])
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        search_phone_number()
+    else:
+        menu()
 
 
 def search_city():
-    pass
+    city = input('Введіть повне ім`я для пошуку: ')
+    for number, info in data_dict.items():
+        for city_name in info.values():
+            if city_name.lower() == city.lower():
+                print(data_dict[number])
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        search_city()
+    else:
+        menu()
 
 
 def del_record_by_phone():
-    pass
+    phone_number = input('Введіть номер телефону для видалення: ')
+    for number in list(data_dict):
+        if number == phone_number:
+            data_dict.pop(number)
+            print(f'Дані про контакт {number} було видалено')
+    with open(phonebook_name + '.json', 'w') as file:
+        json.dump(data_dict, file)
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        del_record_by_phone()
+    else:
+        menu()
 
 
 def upd_record_by_phone():
-    pass
+    phone_number = input('Введіть номер телефону для зміни даних: ')
+    for number, info in data_dict.items():
+        if number == phone_number:
+            first_name = input('Введи нове ім`я: ')
+            last_name = input('Введи нове прізвище: ')
+            city = input('Введи назву міста: ')
+            info = {
+                'first_name': first_name,
+                'last_name': last_name,
+                'full_name': first_name + ' ' + last_name,
+                'city': city
+            }
+            data_dict[phone_number] = info
+            print('Контакт збережено.')
+    with open(phonebook_name + '.json', 'w') as file:
+        json.dump(data_dict, file)
+    is_repeat = input('Бажаєте повторити? Введіть: Так або Ні. ')
+    if is_repeat == 'Так':
+        upd_record_by_phone()
+    else:
+        menu()
 
 
 def exit_program():
-    pass
+    data.close()
+    print('Виконання програми завершено')
+
+
+try:
+    if not os.path.exists(f'{phonebook_name}.json'):
+        print('Телефонної книги з такою назвою не знайдено')
+        raise FileNotFoundError
+    else:
+        with open(phonebook_name + '.json') as data:
+            data_dict = json.load(data)
+        menu()
+except FileNotFoundError:
+    is_new_phonebook = input('Бажаєте створити? Введіть: Так або Ні. ')
+    if is_new_phonebook == 'Так':
+        with open(phonebook_name + '.json', 'w') as data:
+            phonebook_data = dict()
+            json.dump(phonebook_data, data)
+        print(f'{phonebook_name}.json був створений')
+        with open(phonebook_name + '.json') as data:
+            data_dict = json.load(data)
+        menu()
+    else:
+        print('Виконання програми завершено')
