@@ -14,10 +14,7 @@ class MyStack:
         return self.sequence.pop()
 
     def is_empty(self) -> bool:
-        if len(self.sequence) == 0:
-            return True
-        else:
-            return False
+        return True if len(self.sequence) == 0 else False
 
     def reverse_print(self):
         while not self.is_empty():
