@@ -16,6 +16,11 @@ class MyStack:
     def is_empty(self) -> bool:
         return True if len(self.sequence) == 0 else False
 
+    def index(self, index):
+        for i, v in enumerate(self.sequence, 1):
+            if index == i:
+                return v
+
     def reverse_print(self):
         while not self.is_empty():
             print(self.sequence.pop())
