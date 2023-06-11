@@ -5,22 +5,20 @@ from typing import Any
 
 class MyStack:
     def __init__(self) -> None:
-        self.sequence = list()
+        self.stack = list()
 
     def push(self, item):
-        self.sequence.append(item)
+        self.stack.append(item)
 
     def pop(self) -> Any:
-        return self.sequence.pop()
+        if len(self.stack) == 0:
+            return None
+        last = self.stack.pop()
+        return last
 
     def is_empty(self) -> bool:
-        return True if len(self.sequence) == 0 else False
-
-    def index(self, index):
-        for i, v in enumerate(self.sequence, 1):
-            if index == i:
-                return v
+        return True if len(self.stack) == 0 else False
 
     def reverse_print(self):
         while not self.is_empty():
-            print(self.sequence.pop())
+            print(self.stack.pop())

@@ -2,27 +2,31 @@
 # Any other element must remain in the queue respecting their order.
 # Consider the case in which the element is not found - raise ValueError with proper info Message
 from typing import Any
+from queue import Queue
 
 
-class Queue:
-
-    def __init__(self) -> None:
-        self.queue = []
-
-    def enqueue(self, item):
-        self.queue.append(item)
-
-    def dequeue(self) -> Any:
-        if len(self.queue) < 1:
-            return None
-        return self.queue.pop(0)
-
-    def size(self) -> int:
-        return len(self.queue)
-
-    def get_from_stack(self, item):
-        if item not in self.queue:
-            raise ValueError(f'{item} not in stack')
+class MyQueue(Queue):
+    def get_from_queue(self, item) -> Any:
+        if item in self.queue:
+            temp = list()
+            for i in range(len(self.queue)):
+                last = self.queue.pop()
+                if last != item:
+                    temp.append(last)
+                else:
+                    self.queue += temp[::-1]
+                    return last
         else:
-            index = self.queue.index(item)
-            return self.queue.pop(index)
+            raise ValueError('Element was not found')
+
+
+if __name__ == '__main__':
+    q = MyQueue()
+    q.put(3)
+    q.put(55)
+    q.put(6)
+    q.put(98)
+    q.put(47)
+    print(q.queue)
+    print(q.get_from_queue(6))
+    print(q.queue)
