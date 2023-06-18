@@ -22,7 +22,7 @@ if __name__ == '__main__':
     c1 = Counter()
     c2 = Counter()
     c1.start()
-    c1.join()
     c2.start()
+    c1.join()
     c2.join()
     print(Counter.counter)
