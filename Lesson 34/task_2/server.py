@@ -23,6 +23,7 @@ def connection_from_client(conn):
             conn.sendall(data.upper())
         else:
             break
+    conn.close()
 
 
 if __name__ == '__main__':
