@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from .models import Notes
 
 
 def index(request):
-    notes = ['Note 1', 'Note 2', 'Note 3']
+    notes = Notes.objects.all()
     return render(request, 'index.html', {'notes': notes})
